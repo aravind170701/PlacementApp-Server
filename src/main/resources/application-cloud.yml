@@ -1,0 +1,7 @@
+server:
+  port: 7070
+  
+spring:  application:    name: placement-app  datasource:    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/placement-app}
+  jpa:    hibernate:      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    
