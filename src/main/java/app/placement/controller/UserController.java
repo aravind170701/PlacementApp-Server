@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.placement.dto.ResponseObject;
 import app.placement.dto.UserDto;
 import app.placement.service.UserService;
+import app.placement.utils.Constants;
 import lombok.Getter;
 
 @Getter
@@ -19,8 +21,18 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("/register")
-	public boolean registerUser(@RequestBody UserDto userDto) {
-		return getUserService().registerUser(userDto);
+	public ResponseObject registerUser(@RequestBody UserDto userDto) {
+		var response = new ResponseObject();
+		if (getUserService().registerUser(userDto)) {
+			response.setStatusCode(Constants.HTTP_STATUS_USER_REGISTERED);
+			response.setResponse("true");
+			response.setMessage("User Registered Sucessfully");
+		} else {
+			response.setStatusCode(Constants.HTTP_STATUS_USER_EXISTING);
+			response.setResponse("false");
+			response.setMessage("User already Registered");
+		}
+		return response;
 	}
 
 	@PostMapping("/login")
