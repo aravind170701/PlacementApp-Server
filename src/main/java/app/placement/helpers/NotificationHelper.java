@@ -21,4 +21,29 @@ public class NotificationHelper {
 		notification.setCompanyDescription(dto.getCompanyDescription());
 		return notification;
 	}
+
+	public NotificationDto convertEntityToDto(Notification notification) {
+		if (notification == null)
+			return null;
+
+		var dto = new NotificationDto();
+		dto.setNotificationId(notification.getNotificationId());
+		dto.setCompanyName(notification.getCompanyName());
+		dto.setCompanyBranch(notification.getCompanyBranch());
+		dto.setDate(notification.getDate());
+		dto.setCompanyPackage(notification.getCompanyPackage());
+		dto.setCompanyVenue(notification.getCompanyVenue());
+		dto.setCompanyDescription(notification.getCompanyDescription());
+		return dto;
+	}
+
+	public NotificationDto convertEntityToDtoSimplified(Notification notification) {
+		if (notification == null)
+			return null;
+
+		var dto = new NotificationDto();
+		dto.setNotificationId(notification.getNotificationId());
+		dto.setCompanyName(notification.getCompanyName());
+		return dto;
+	}
 }
