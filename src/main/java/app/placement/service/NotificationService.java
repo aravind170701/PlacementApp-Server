@@ -54,11 +54,11 @@ public class NotificationService {
 	}
 
 	private NotificationsList getAllNotifications() {
-		return extractList(getNotificationRepository().findAll());
+		return extractList(getNotificationRepository().findAllByOrderByNotificationIdDesc());
 	}
 
 	private NotificationsList getNotificationsByBranch(@NonNull String branch) {
-		return extractList(getNotificationRepository().findAllByCompanyBranch(branch));
+		return extractList(getNotificationRepository().findAllByCompanyBranchOrderByNotificationIdDesc(branch));
 	}
 
 	private NotificationsList extractList(List<Notification> list) {

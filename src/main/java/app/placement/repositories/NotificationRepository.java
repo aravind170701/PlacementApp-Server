@@ -8,5 +8,7 @@ import app.placement.dao.Notification;
 
 public interface NotificationRepository extends JpaRepository<Notification, String> {
 
-	List<Notification> findAllByCompanyBranch(String branch);
+	List<Notification> findAllByCompanyBranchOrderByNotificationIdDesc(String branch);
+
+	List<Notification> findAllByOrderByNotificationIdDesc();
 }
