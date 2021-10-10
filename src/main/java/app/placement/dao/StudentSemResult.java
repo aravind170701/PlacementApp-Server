@@ -45,9 +45,9 @@ public class StudentSemResult implements Serializable {
 	private double sem7;
 	@Column
 	private double sem8;
-	@Column
+	@Column(precision = 10, scale = 2)
 	private double cgpa;
-	@Column
+	@Column(precision = 10, scale = 2)
 	private double percentage;
 
 	@OneToOne(mappedBy = "semResults")
