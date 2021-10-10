@@ -44,7 +44,7 @@ public class UserController {
 	public UserDto validateUserLogin(@RequestBody UserDto userDto) {
 		return getUserService().validateUserCredentials(userDto);
 	}
-
+	
 	@GetMapping("/get-users")
 	public UsersList getUsers(@RequestParam("branch") String branch) {
 		return getUserService().getUsers(branch);

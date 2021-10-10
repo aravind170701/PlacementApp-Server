@@ -22,4 +22,5 @@ public class UserDto {
 	private String mobile;
 	private String userType;
 	private String year;
+	private SemResultsDto semResultsDto;
 }

@@ -1,8 +1,11 @@
 package app.placement.dao;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -51,4 +54,8 @@ public class User {
 
 	@Column
 	private String year;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "sem_results_id", referencedColumnName = "id")
+	private StudentSemResult semResults;
 }
