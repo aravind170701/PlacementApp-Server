@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,7 @@ public class UserController {
 	public UserDto validateUserLogin(@RequestBody UserDto userDto) {
 		return getUserService().validateUserCredentials(userDto);
 	}
-	
+
 	@GetMapping("/get-users")
 	public UsersList getUsers(@RequestParam("branch") String branch) {
 		return getUserService().getUsers(branch);
@@ -53,5 +54,19 @@ public class UserController {
 	@GetMapping("/get-user")
 	public UserDto getUser(@RequestParam("prn") String prn) {
 		return getUserService().getUserByPrn(prn);
+	}
+
+	@PutMapping("/update-profile")
+	public ResponseObject updateUserProfile(@RequestBody UserDto userDto) {
+		var isProfileUpdated = getUserService().updateProfile(userDto);
+		var response = new ResponseObject();
+		if (isProfileUpdated) {
+			response.setStatusCode(Constants.HTTP_STATUS_SUCCESS);
+			response.setMessage("User profie updated Sucessfully");
+		} else {
+			response.setStatusCode(Constants.HTTP_STATUS_ERROR);
+			response.setMessage("User profile update failed");
+		}
+		return response;
 	}
 }
