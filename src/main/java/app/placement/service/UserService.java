@@ -162,8 +162,6 @@ public class UserService {
 		semResults.setSem8(semMap.getOrDefault("sem8", semResults.getSem8()));
 
 		calculateScores(semResults, semMap);
-		semResults.setCgpa(semMap.getOrDefault("cgpa", semResults.getCgpa()));
-		semResults.setPercentage(semMap.getOrDefault("percentage", semResults.getPercentage()));
 		semResults.setUser(user);
 
 		// set in user
