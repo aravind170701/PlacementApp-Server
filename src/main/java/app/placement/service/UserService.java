@@ -2,6 +2,7 @@ package app.placement.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -89,7 +90,8 @@ public class UserService {
 	}
 
 	private UsersList extractList(List<User> list) {
-		var users = list.stream().map(getUserHelper()::convertEntityToDtoSimplified).collect(Collectors.toList());
+		var users = list.stream().filter(Predicate.not(i -> "0".equals(i.getUserType())))
+				.map(getUserHelper()::convertEntityToDtoSimplified).collect(Collectors.toList());
 		var usersList = new UsersList();
 		usersList.setUsers(users);
 		return usersList;
