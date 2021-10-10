@@ -1,10 +1,12 @@
 package app.placement.helpers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Component;
 
 import app.placement.dao.StudentSemResult;
 import app.placement.dao.User;
-import app.placement.dto.SemResultsDto;
 import app.placement.dto.UserDto;
 
 @Component
@@ -25,18 +27,17 @@ public class UserHelper {
 		userEntity.setUserType(userDto.getUserType());
 
 		// Set Semester Results
-		if (userDto.getSemResultsDto() != null) {
-			var semDto = userDto.getSemResultsDto();
+		if (userDto.getSemResults() != null && !userDto.getSemResults().isEmpty()) {
 			var semResults = new StudentSemResult();
-
-			semResults.setSem1(semDto.getSem1());
-			semResults.setSem2(semDto.getSem2());
-			semResults.setSem3(semDto.getSem3());
-			semResults.setSem4(semDto.getSem4());
-			semResults.setSem5(semDto.getSem5());
-			semResults.setSem6(semDto.getSem6());
-			semResults.setSem7(semDto.getSem7());
-			semResults.setSem8(semDto.getSem8());
+			var semResultsMap = userDto.getSemResults();
+			semResults.setSem1(semResultsMap.get("sem1"));
+			semResults.setSem2(semResultsMap.get("sem2"));
+			semResults.setSem3(semResultsMap.get("sem3"));
+			semResults.setSem4(semResultsMap.get("sem4"));
+			semResults.setSem5(semResultsMap.get("sem5"));
+			semResults.setSem6(semResultsMap.get("sem6"));
+			semResults.setSem7(semResultsMap.get("sem7"));
+			semResults.setSem8(semResultsMap.get("sem8"));
 
 			// set CGPA
 			calculateScores(semResults);
@@ -104,18 +105,18 @@ public class UserHelper {
 
 		if (user.getSemResults() != null) {
 			var results = user.getSemResults();
-			var semDto = new SemResultsDto();
-			semDto.setSem1(results.getSem1());
-			semDto.setSem2(results.getSem2());
-			semDto.setSem3(results.getSem3());
-			semDto.setSem4(results.getSem4());
-			semDto.setSem5(results.getSem5());
-			semDto.setSem6(results.getSem6());
-			semDto.setSem7(results.getSem7());
-			semDto.setSem8(results.getSem8());
-			semDto.setCgpa(results.getCgpa());
-			semDto.setPercentage(results.getPercentage());
-			userDto.setSemResultsDto(semDto);
+			Map<String, Double> semResults = new HashMap<>();
+			semResults.put("sem1", results.getSem1());
+			semResults.put("sem2", results.getSem2());
+			semResults.put("sem3", results.getSem3());
+			semResults.put("sem4", results.getSem4());
+			semResults.put("sem5", results.getSem5());
+			semResults.put("sem6", results.getSem6());
+			semResults.put("sem7", results.getSem7());
+			semResults.put("sem8", results.getSem8());
+			semResults.put("cgpa", results.getCgpa());
+			semResults.put("percentage", results.getPercentage());
+			userDto.setSemResults(semResults);
 		}
 		return userDto;
 	}

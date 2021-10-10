@@ -1,5 +1,7 @@
 package app.placement.dto;
 
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +24,5 @@ public class UserDto {
 	private String mobile;
 	private String userType;
 	private String year;
-	private SemResultsDto semResultsDto;
+	private Map<String, Double> semResults;
 }
