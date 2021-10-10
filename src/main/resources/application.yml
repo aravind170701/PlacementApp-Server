@@ -4,6 +4,7 @@ server:
 spring:  application:    name: placement-app  datasource:    url: jdbc:postgresql://localhost:5432/placement-app
     username: postgres
     password: root
+    hikari:      maximum-pool-size: 5
   jpa:    hibernate:      ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     
