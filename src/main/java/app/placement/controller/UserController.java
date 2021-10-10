@@ -49,4 +49,9 @@ public class UserController {
 	public UsersList getUsers(@RequestParam("branch") String branch) {
 		return getUserService().getUsers(branch);
 	}
+
+	@GetMapping("/get-user")
+	public UserDto getUser(@RequestParam("prn") String prn) {
+		return getUserService().getUserByPrn(prn);
+	}
 }
