@@ -45,7 +45,7 @@ public class NotificationController {
 	}
 
 	@GetMapping("/get-notification")
-	public NotificationDto getNotificationDetailsById(@RequestParam("id") String notificationId) {
+	public NotificationDto getNotificationDetailsById(@RequestParam("id") Integer notificationId) {
 		return getNotificationService().getNotificationById(notificationId);
 	}
 }
