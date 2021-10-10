@@ -48,8 +48,7 @@ public class UserService {
 		/*
 		 * Validate PRN and Password. If present, send the User type details in response
 		 */
-		var userDetailsOpt = getUserRepository().findByPrnAndPassword(userDto.getPrn().toLowerCase(),
-				userDto.getPassword());
+		var userDetailsOpt = getUserRepository().findByPrnAndPassword(userDto.getPrn(), userDto.getPassword());
 		if (userDetailsOpt.isEmpty()) {
 			log.debug("Given Login credentials does not exist");
 			return new UserDto();

@@ -12,7 +12,7 @@ public class UserHelper {
 			return new User();
 
 		var userEntiry = new User();
-		userEntiry.setPrn(userDto.getPrn().toLowerCase());
+		userEntiry.setPrn(userDto.getPrn());
 		userEntiry.setName(userDto.getName());
 		userEntiry.setPassword(userDto.getPassword());
 		userEntiry.setEmail(userDto.getEmail());
