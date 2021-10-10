@@ -1,13 +1,20 @@
 package app.placement.service;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.placement.dao.User;
 import app.placement.dto.UserDto;
+import app.placement.dto.UsersList;
 import app.placement.helpers.UserHelper;
 import app.placement.repositories.UserRepository;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -57,5 +64,45 @@ public class UserService {
 		var returnedUserDto = getUserHelper().getUserBeanFromEntity(userDetailsOpt.get());
 		returnedUserDto.setLoginSuccessful(true);
 		return returnedUserDto;
+	}
+
+	public UsersList getUsers(String branch) {
+		try {
+			if (StringUtils.isBlank(branch) || StringUtils.equals("ALL", branch)) {
+				return getAllUsers();
+			}
+			return getUsersByBranch(branch);
+		} catch (RuntimeException e) {
+			log.error("Error while fething the notification records: " + branch);
+			var obj = new UsersList();
+			obj.setUsers(Collections.emptyList());
+			return obj;
+		}
+	}
+
+	private UsersList getAllUsers() {
+		return extractList(getUserRepository().findAllByOrderByNameAsc());
+	}
+
+	private UsersList getUsersByBranch(@NonNull String branch) {
+		return extractList(getUserRepository().findAllByBranchOrderByNameAsc(branch));
+	}
+
+	private UsersList extractList(List<User> list) {
+		var users = list.stream().map(getUserHelper()::convertEntityToDtoSimplified).collect(Collectors.toList());
+		var usersList = new UsersList();
+		usersList.setUsers(users);
+		return usersList;
+	}
+
+	public UserDto getUserByPrn(String prn) {
+		if (StringUtils.isBlank(prn))
+			return null;
+		var usersDetailsOpt = getUserRepository().findByPrn(prn);
+		if (usersDetailsOpt.isEmpty()) {
+			log.error("No User details found by given PRN: " + prn);
+			return null;
+		}
+		return getUserHelper().getUserBeanFromEntity(usersDetailsOpt.get());
 	}
 }

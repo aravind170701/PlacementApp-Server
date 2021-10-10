@@ -2,13 +2,16 @@ package app.placement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.placement.dto.ResponseObject;
 import app.placement.dto.UserDto;
+import app.placement.dto.UsersList;
 import app.placement.service.UserService;
 import app.placement.utils.Constants;
 import lombok.Getter;
@@ -40,5 +43,10 @@ public class UserController {
 	@PostMapping("/login")
 	public UserDto validateUserLogin(@RequestBody UserDto userDto) {
 		return getUserService().validateUserCredentials(userDto);
+	}
+
+	@GetMapping("/get-users")
+	public UsersList getUsers(@RequestParam("branch") String branch) {
+		return getUserService().getUsers(branch);
 	}
 }

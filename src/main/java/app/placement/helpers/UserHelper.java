@@ -41,4 +41,14 @@ public class UserHelper {
 
 		return userDto;
 	}
+
+	public UserDto convertEntityToDtoSimplified(User user) {
+		if (user == null)
+			return null;
+
+		var dto = new UserDto();
+		dto.setPrn(user.getPrn());
+		dto.setName(user.getName());
+		return dto;
+	}
 }
