@@ -43,4 +43,9 @@ public class NotificationController {
 	public NotificationsList getNotifications(@RequestParam("branch") String branch) {
 		return getNotificationService().getNotifications(branch);
 	}
+
+	@GetMapping("/get-notification")
+	public NotificationDto getNotifications(@RequestParam("id") int notificationId) {
+		return getNotificationService().getNotificationById(notificationId);
+	}
 }

@@ -68,4 +68,15 @@ public class NotificationService {
 		notificationsList.setNotifications(notifications);
 		return notificationsList;
 	}
+
+	public NotificationDto getNotificationById(int notificationId) {
+		if (notificationId <= 0)
+			return null;
+		var notificationDetailsOpt = getNotificationRepository().findById(notificationId);
+		if (notificationDetailsOpt.isEmpty()) {
+			log.error("No notification details found by given ID: " + notificationId);
+			return null;
+		}
+		return getNotificationHelper().convertEntityToDto(notificationDetailsOpt.get());
+	}
 }
