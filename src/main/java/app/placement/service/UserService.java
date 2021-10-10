@@ -178,8 +178,8 @@ public class UserService {
 			sum += entry.getValue();
 		}
 		if (count > 0) {
-			semResults.setCgpa(sum / count);
-			semResults.setPercentage(semResults.getCgpa() * 8.8);
+			semResults.setCgpa(Math.round((sum / count) * 100.0 / 100.0));
+			semResults.setPercentage(Math.round((semResults.getCgpa() * 8.8) * 100.0 / 100.0));
 		}
 	}
 }

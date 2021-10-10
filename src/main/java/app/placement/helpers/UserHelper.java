@@ -50,7 +50,7 @@ public class UserHelper {
 
 	private void calculateScores(StudentSemResult semResults) {
 		int count = 0;
-		int sum = 0;
+		double sum = 0;
 		if (semResults.getSem1() > 0) {
 			count++;
 			sum += semResults.getSem1();
@@ -85,8 +85,8 @@ public class UserHelper {
 		}
 
 		if (count > 0) {
-			semResults.setCgpa((double) sum / count);
-			semResults.setPercentage(semResults.getCgpa() * 8.8);
+			semResults.setCgpa(Math.round((sum / count) * 100.0 / 100.0));
+			semResults.setPercentage(Math.round((semResults.getCgpa() * 8.8) * 100.0 / 100.0));
 		}
 	}
 
