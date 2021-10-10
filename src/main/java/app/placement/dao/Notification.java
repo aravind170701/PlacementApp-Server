@@ -19,7 +19,7 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private Integer notificationId;
+	private String notificationId;
 	@Column
 	private String companyName;
 	@Column

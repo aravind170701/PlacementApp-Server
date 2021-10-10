@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class NotificationDto {
-	private int notificationId;
+	private String notificationId;
 	private String companyName;
 	private String companyBranch;
 	private String date;

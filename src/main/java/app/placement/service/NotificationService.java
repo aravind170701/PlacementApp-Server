@@ -69,8 +69,8 @@ public class NotificationService {
 		return notificationsList;
 	}
 
-	public NotificationDto getNotificationById(int notificationId) {
-		if (notificationId <= 0)
+	public NotificationDto getNotificationById(String notificationId) {
+		if (StringUtils.isBlank(notificationId))
 			return null;
 		var notificationDetailsOpt = getNotificationRepository().findById(notificationId);
 		if (notificationDetailsOpt.isEmpty()) {

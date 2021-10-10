@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.placement.dao.Notification;
 
-public interface NotificationRepository extends JpaRepository<Notification, Integer> {
+public interface NotificationRepository extends JpaRepository<Notification, String> {
 
 	List<Notification> findAllByCompanyBranch(String branch);
 }
