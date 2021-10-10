@@ -171,15 +171,12 @@ public class UserService {
 	private void calculateScores(StudentSemResult semResults, Map<String, Double> semMap) {
 		double sum = 0;
 		int count = 0;
-		System.out.println("Elements in Map: " + semMap.size() + ": " + semMap);		
 		for (Map.Entry<String, Double> entry : semMap.entrySet()) {
 			if (entry.getValue() > 0) {
 				count++;
 			}
 			sum += entry.getValue();
 		}
-		System.out.println("count is: " + count);
-		System.out.println("Sum is: " + sum);
 		if (count > 0) {
 			semResults.setCgpa(sum / count);
 			semResults.setPercentage(semResults.getCgpa() * 8.8);
