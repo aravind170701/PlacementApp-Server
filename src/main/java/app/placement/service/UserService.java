@@ -2,6 +2,7 @@ package app.placement.service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -159,11 +160,28 @@ public class UserService {
 		semResults.setSem6(semMap.getOrDefault("sem6", semResults.getSem6()));
 		semResults.setSem7(semMap.getOrDefault("sem7", semResults.getSem7()));
 		semResults.setSem8(semMap.getOrDefault("sem8", semResults.getSem8()));
+
+		calculateScores(semResults, semMap);
 		semResults.setCgpa(semMap.getOrDefault("cgpa", semResults.getCgpa()));
 		semResults.setPercentage(semMap.getOrDefault("percentage", semResults.getPercentage()));
 		semResults.setUser(user);
 
 		// set in user
 		user.setSemResults(semResults);
+	}
+
+	private void calculateScores(StudentSemResult semResults, Map<String, Double> semMap) {
+		double sum = 0;
+		int count = 0;
+		for (Map.Entry<String, Double> entry : semMap.entrySet()) {
+			if (entry.getValue() > 0) {
+				count++;
+			}
+			sum += entry.getValue();
+		}
+		if (count > 0) {
+			semResults.setCgpa(sum / count);
+			semResults.setPercentage(semResults.getCgpa() * 8.8);
+		}
 	}
 }
