@@ -1,8 +1,11 @@
 package app.placement.dao;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -24,7 +27,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Entity
 @Table(name = "user_details")
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 6244648778381076850L;
 
 	@Id
 	@Column
@@ -55,7 +60,7 @@ public class User {
 	@Column
 	private String year;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sem_results_id", referencedColumnName = "id")
 	private StudentSemResult semResults;
 }

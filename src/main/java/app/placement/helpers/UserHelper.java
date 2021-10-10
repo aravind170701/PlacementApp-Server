@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import app.placement.dao.StudentSemResult;
 import app.placement.dao.User;
 import app.placement.dto.UserDto;
+import app.placement.utils.GenericUtils;
 
 @Component
 public class UserHelper {
@@ -27,7 +28,7 @@ public class UserHelper {
 		userEntity.setUserType(userDto.getUserType());
 
 		// Set Semester Results
-		if (userDto.getSemResults() != null && !userDto.getSemResults().isEmpty()) {
+		if (!GenericUtils.isNullOrEmptyMap(userDto.getSemResults())) {
 			var semResults = new StudentSemResult();
 			var semResultsMap = userDto.getSemResults();
 			semResults.setSem1(semResultsMap.get("sem1"));

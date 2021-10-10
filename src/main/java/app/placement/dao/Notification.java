@@ -1,5 +1,7 @@
 package app.placement.dao;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +16,10 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "company_notifications")
-public class Notification {
+public class Notification implements Serializable {
 
+	private static final long serialVersionUID = 3444763993159840377L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column

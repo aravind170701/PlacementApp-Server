@@ -1,5 +1,7 @@
 package app.placement.dao;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "sem_results")
-public class StudentSemResult {
+public class StudentSemResult implements Serializable {
+
+	private static final long serialVersionUID = -1753011092584862518L;
 
 	@Id
 	@Column

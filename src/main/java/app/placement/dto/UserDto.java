@@ -1,5 +1,6 @@
 package app.placement.dto;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import lombok.Getter;
@@ -11,7 +12,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class UserDto {
+public class UserDto implements Serializable {
+
+	private static final long serialVersionUID = -2561159185495962167L;
 
 	private boolean loginSuccessful;
 

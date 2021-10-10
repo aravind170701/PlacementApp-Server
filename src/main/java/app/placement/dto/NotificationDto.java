@@ -1,5 +1,7 @@
 package app.placement.dto;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +11,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class NotificationDto {
+public class NotificationDto implements Serializable {
+
+	private static final long serialVersionUID = 5323005367561606611L;
+
 	private Integer notificationId;
 	private String companyName;
 	private String companyBranch;

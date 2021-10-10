@@ -5,15 +5,19 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.placement.dao.StudentSemResult;
 import app.placement.dao.User;
 import app.placement.dto.UserDto;
 import app.placement.dto.UsersList;
 import app.placement.helpers.UserHelper;
 import app.placement.repositories.UserRepository;
+import app.placement.utils.GenericUtils;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @Service
 @Slf4j
+@Transactional
 public class UserService {
 
 	@Autowired
@@ -106,5 +111,59 @@ public class UserService {
 			return null;
 		}
 		return getUserHelper().getUserBeanFromEntity(usersDetailsOpt.get());
+	}
+
+	public boolean updateProfile(UserDto userDto) {
+		if (userDto == null || StringUtils.isBlank(userDto.getPrn())) {
+			log.error("Cannot update Profile. Details are Empty");
+			return false;
+		}
+
+		// check if the record is present
+		var existingUserOpt = getUserRepository().findByPrn(userDto.getPrn());
+		if (existingUserOpt.isEmpty()) {
+			log.error("User not existing. Cannot update details");
+			return false;
+		}
+
+		var user = existingUserOpt.get();
+		if (userDto.getDivision() > 0) {
+			user.setDivision(userDto.getDivision());
+		}
+		if (StringUtils.isNotBlank(userDto.getYear())) {
+			user.setYear(userDto.getYear());
+		}
+		if (StringUtils.isNotBlank(userDto.getMobile()) && userDto.getMobile().matches("[0-9]+")) {
+			user.setMobile(userDto.getMobile());
+		}
+
+		updateSemesterScores(user, userDto);
+		getUserRepository().save(user);
+		return true;
+	}
+
+	private void updateSemesterScores(User user, UserDto userDto) {
+		if (GenericUtils.isNullOrEmptyMap(userDto.getSemResults()))
+			return;
+
+		var semResults = user.getSemResults();
+		if (semResults == null) {
+			semResults = new StudentSemResult();
+		}
+		var semMap = userDto.getSemResults();
+		semResults.setSem1(semMap.getOrDefault("sem1", semResults.getSem1()));
+		semResults.setSem2(semMap.getOrDefault("sem2", semResults.getSem2()));
+		semResults.setSem3(semMap.getOrDefault("sem3", semResults.getSem3()));
+		semResults.setSem4(semMap.getOrDefault("sem4", semResults.getSem4()));
+		semResults.setSem5(semMap.getOrDefault("sem5", semResults.getSem5()));
+		semResults.setSem6(semMap.getOrDefault("sem6", semResults.getSem6()));
+		semResults.setSem7(semMap.getOrDefault("sem7", semResults.getSem7()));
+		semResults.setSem8(semMap.getOrDefault("sem8", semResults.getSem8()));
+		semResults.setCgpa(semMap.getOrDefault("cgpa", semResults.getCgpa()));
+		semResults.setPercentage(semMap.getOrDefault("percentage", semResults.getPercentage()));
+		semResults.setUser(user);
+
+		// set in user
+		user.setSemResults(semResults);
 	}
 }
