@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ApplicationDto implements Serializable{
     
-    private String applicationId;
+    private Integer applicationId;
     private Integer notificationId;
     private String prn;
     private String status;
