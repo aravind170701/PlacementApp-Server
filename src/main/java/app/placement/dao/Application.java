@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "user_details")
+@Table(name = "application_details")
 public class Application implements Serializable{
 
     @Id
