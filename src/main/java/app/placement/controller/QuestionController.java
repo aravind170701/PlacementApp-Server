@@ -2,12 +2,14 @@ package app.placement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.placement.dto.QuestionDto;
+import app.placement.dto.QuestionsList;
 import app.placement.dto.ResponseObject;
 import app.placement.service.QuestionService;
 import app.placement.utils.Constants;
@@ -34,6 +36,11 @@ public class QuestionController {
 		responseObj.setStatusCode(Constants.HTTP_STATUS_ERROR);
 		responseObj.setMessage("Question could not be saved in DB");
 		return responseObj;
+	}
+
+	@GetMapping("/get-questions")
+	public QuestionsList getNotifications() {
+		return getQuestionService().getAllQuestions();
 	}
     
 }

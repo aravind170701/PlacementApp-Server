@@ -17,4 +17,14 @@ public class QuestionHelper {
 
 		return question;
 	}
+
+	public QuestionDto convertEntityToDtoSimplified(Question question) {
+		if (question == null)
+			return null;
+
+		var dto = new QuestionDto();
+		dto.setQuestionId(question.getQuestionId());
+		dto.setQuestion(question.getQuestion());
+		return dto;
+	}
 }
