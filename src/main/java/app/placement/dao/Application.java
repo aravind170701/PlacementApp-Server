@@ -38,3 +38,5 @@ public class Application implements Serializable{
     @Column
     private String status;
 }
+
+
