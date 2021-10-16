@@ -14,6 +14,7 @@ import app.placement.dto.AnswersList;
 import app.placement.helpers.AnswerHelper;
 import app.placement.repositories.AnswerRepository;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 @Getter
@@ -39,8 +40,9 @@ public class AnswerService{
 		return true;
 	}
     
-	public AnswersList getAllAnswers() {
-		return extractList(getAnswerRepository().findAllByOrderByAnswerIdDesc());
+
+	public AnswersList getAnswersByQuestionId(@NonNull Integer questionId) {
+		return extractList(getAnswerRepository().findAllByQuestionIdOrderByAnswerIdDesc(questionId));
 	}
 
 	private AnswersList extractList(List<Answer> list) {
