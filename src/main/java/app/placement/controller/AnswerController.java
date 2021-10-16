@@ -40,8 +40,9 @@ public class AnswerController {
 	}
 
 	@GetMapping("/get-answers")
-	public AnswersList getAnswers(@RequestParam("questionId") Integer questionId) {
-		return getAnswerService().getAnswersByQuestionId(questionId);
+	public AnswersList getAnswers(@RequestParam("questionId") String questionId) {
+		Integer questionIdInInteger = Integer.valueOf(questionId);
+		return getAnswerService().getAnswersByQuestionId(questionIdInInteger);
 	}
     
 }
