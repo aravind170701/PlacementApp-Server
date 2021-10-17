@@ -63,4 +63,7 @@ public class User implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sem_results_id", referencedColumnName = "id")
 	private StudentSemResult semResults;
+
+	@Column
+	private String cvUrl;
 }
