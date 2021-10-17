@@ -27,5 +27,6 @@ public class UserDto implements Serializable {
 	private String mobile;
 	private String userType;
 	private String year;
+	private String cvUrl;
 	private Map<String, Double> semResults;
 }
