@@ -16,25 +16,23 @@ public class ApplicationHelper {
 		var application = new Application();
         application.setNotificationId(dto.getNotificationId());
         application.setPrn(dto.getPrn());
-        application.setStatus(dto.getStatus());
+        application.setOverallStatus(dto.getOverallStatus());
 
 		return application;
 	}
 
-	// public NotificationDto convertEntityToDto(Notification notification) {
-	// 	if (notification == null)
-	// 		return null;
+	public ApplicationDto convertEntityToDto(Application application) {
+		if (application == null)
+			return null;
 
-	// 	var dto = new NotificationDto();
-	// 	dto.setNotificationId(notification.getNotificationId());
-	// 	dto.setCompanyName(notification.getCompanyName());
-	// 	dto.setCompanyBranch(notification.getCompanyBranch());
-	// 	dto.setDate(notification.getDate());
-	// 	dto.setCompanyPackage(notification.getCompanyPackage());
-	// 	dto.setCompanyVenue(notification.getCompanyVenue());
-	// 	dto.setCompanyDescription(notification.getCompanyDescription());
-	// 	return dto;
-	// }
+		var dto = new ApplicationDto();
+		dto.setApplicationId(application.getApplicationId());
+		dto.setPrn(application.getPrn());
+		dto.setNotificationId(application.getNotificationId());
+		dto.setOverallStatus(application.getOverallStatus());
+
+		return dto;
+	}
 
 	// public NotificationDto convertEntityToDtoSimplified(Notification notification) {
 	// 	if (notification == null)

@@ -16,5 +16,5 @@ public class ApplicationDto implements Serializable{
     private Integer applicationId;
     private Integer notificationId;
     private String prn;
-    private String status;
+    private String overallStatus;
 }

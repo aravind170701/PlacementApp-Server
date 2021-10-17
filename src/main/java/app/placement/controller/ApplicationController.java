@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.placement.dto.ApplicationDto;
-import app.placement.dto.ResponseObject;
 import app.placement.service.ApplicationService;
-import app.placement.utils.Constants;
 import lombok.Getter;
 
 @Getter
@@ -23,17 +21,9 @@ public class ApplicationController {
 	private ApplicationService applicationService;
 
 	@PostMapping("/save-application")
-	public ResponseObject saveApplicationInDb(@RequestBody ApplicationDto dto) {
-		var isPostSaved = getApplicationService().saveApplication(dto);
-		var responseObj = new ResponseObject();
-		if (isPostSaved) {
-			responseObj.setStatusCode(Constants.HTTP_STATUS_SUCCESS);
-			responseObj.setMessage("Applied Successfully");
-			return responseObj;
-		}
-		responseObj.setStatusCode(Constants.HTTP_STATUS_ERROR);
-		responseObj.setMessage("Application Form Failed");
-		return responseObj;
+	public ApplicationDto saveApplicationInDb(@RequestBody ApplicationDto dto) {
+		var applicationDto = getApplicationService().saveApplication(dto);
+		return applicationDto;
 	}
 
 	// @GetMapping("/get-notifications")

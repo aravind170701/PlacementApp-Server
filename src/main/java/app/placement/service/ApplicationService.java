@@ -1,10 +1,13 @@
 package app.placement.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.placement.dao.Application;
 import app.placement.dto.ApplicationDto;
 import app.placement.helpers.ApplicationHelper;
 import app.placement.repositories.ApplicationRepository;
@@ -22,16 +25,27 @@ public class ApplicationService {
 	@Autowired
 	private ApplicationHelper applicationHelper;
 
-    public boolean saveApplication(ApplicationDto applicationDto) {
+    public ApplicationDto saveApplication(ApplicationDto applicationDto) {
 		if (applicationDto == null) {
 			log.error("Application Form DTO is null");
-			return false;
+			return null;
 		}
 
 		// Persist notification in DB
 		var application = getApplicationHelper().convertDtoToEntity(applicationDto);
-		getApplicationRepository().save(application);
-		return true;
+		Optional<Application> optional = getApplicationRepository().findByPrnAndNotificationId(application.getPrn(),
+										application.getNotificationId());
+
+		if(optional.isEmpty())
+		{
+			application = getApplicationRepository().save(application);
+			return getApplicationHelper().convertEntityToDto(application);
+		}
+
+		Application dbFetchedApplication = optional.get();
+		dbFetchedApplication.setOverallStatus(application.getOverallStatus());
+		getApplicationRepository().save(dbFetchedApplication);
+		return getApplicationHelper().convertEntityToDto(dbFetchedApplication);
 	}
 
 	// public NotificationsList getNotifications(String branch) {
