@@ -22,21 +22,21 @@ import lombok.ToString;
 @EqualsAndHashCode
 @Entity
 @Table(name = "application_details")
-public class Application implements Serializable{
+public class Application implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 4985753136026648777L;
+
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-    private Integer applicationId;
-    
-    @Column
-    private String prn;
+	private Integer applicationId;
 
-    @Column
-    private Integer notificationId;
+	@Column
+	private String prn;
 
-    @Column
-    private String overallStatus;
+	@Column
+	private Integer notificationId;
+
+	@Column
+	private String overallStatus;
 }
-
-

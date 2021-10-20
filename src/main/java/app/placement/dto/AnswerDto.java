@@ -11,11 +11,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class AnswerDto implements Serializable{
-    
-    private Integer questionId;
-    private Integer answerId;
-    private String answer;
-    private String studentName;
+public class AnswerDto implements Serializable {
+
+	private static final long serialVersionUID = -2466272553538522457L;
+	private Integer questionId;
+	private Integer answerId;
+	private String answer;
+	private String studentName;
 
 }
