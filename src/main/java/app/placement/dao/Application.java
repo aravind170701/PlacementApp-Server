@@ -37,9 +37,6 @@ public class Application implements Serializable {
 	private String prn;
 
 	@Column
-	private Integer notificationId;
-
-	@Column
 	private String overallStatus;
 
 	@ManyToOne
