@@ -11,5 +11,5 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 
 	public Optional<Application> findByPrnAndNotificationId(String prn, Integer notificationId);
 
-	public List<Application> findByNotificationId(String notificationId);
+	public List<Application> findByNotificationId(Integer notificationId);
 }

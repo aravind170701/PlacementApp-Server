@@ -122,7 +122,7 @@ public class ApplicationService {
 			applicationsList.setStudentApplicationsDto(Collections.emptyList());
 			return applicationsList;
 		}
-		var applications = getApplicationRepository().findByNotificationId(notificationId);
+		var applications = getApplicationRepository().findByNotificationId(Integer.parseInt(notificationId));
 		if (applications.isEmpty()) {
 			var applicationsList = new StudentApplicationList();
 			applicationsList.setStudentApplicationsDto(Collections.emptyList());
