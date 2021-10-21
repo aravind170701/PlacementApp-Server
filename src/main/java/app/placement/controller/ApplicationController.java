@@ -44,6 +44,6 @@ public class ApplicationController {
 	@GetMapping("/get-applications")
 	public StudentApplicationList getApplicationsByNotificationId(
 			@RequestParam("notificationId") String notificationId) {
-		return null;
+		return getApplicationService().getApplicationsForNotification(notificationId);
 	}
 }

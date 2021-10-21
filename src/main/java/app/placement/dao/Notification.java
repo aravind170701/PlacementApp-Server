@@ -1,12 +1,14 @@
 package app.placement.dao;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -19,7 +21,7 @@ import lombok.Setter;
 public class Notification implements Serializable {
 
 	private static final long serialVersionUID = 3444763993159840377L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -36,4 +38,7 @@ public class Notification implements Serializable {
 	private String companyVenue;
 	@Column
 	private String companyDescription;
+
+	@OneToMany(mappedBy = "notification")
+	private Set<Application> notifications;
 }

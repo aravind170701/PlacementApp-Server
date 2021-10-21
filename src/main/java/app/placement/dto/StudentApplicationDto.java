@@ -20,4 +20,5 @@ public class StudentApplicationDto implements Serializable {
 	private String branch;
 	private String email;
 	private String companyName;
+	private Integer applicationId;
 }

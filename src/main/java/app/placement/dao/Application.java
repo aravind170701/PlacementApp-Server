@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -39,4 +41,12 @@ public class Application implements Serializable {
 
 	@Column
 	private String overallStatus;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "notification_id", nullable = false)
+	private Notification notification;
 }
