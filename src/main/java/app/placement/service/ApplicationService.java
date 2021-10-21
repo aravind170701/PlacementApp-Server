@@ -138,7 +138,7 @@ public class ApplicationService {
 			application.setBranch(i.getUser().getBranch());
 			application.setEmail(i.getUser().getEmail());
 			application.setOverallStatus(i.getOverallStatus());
-			application.setApplicationId(i.getNotificationId());
+			application.setNotificationId(i.getNotification().getNotificationId())
 			application.setCompanyName(i.getNotification().getCompanyName());
 			return application;
 		}).collect(Collectors.toList());
