@@ -47,7 +47,7 @@ public class ApplicationService {
 		// Persist notification in DB
 		var application = getApplicationHelper().convertDtoToEntity(applicationDto);
 		Optional<Application> optional = getApplicationRepository().findByPrnAndNotificationId(application.getPrn(),
-				application.getNotificationId());
+				applicationDto.getNotificationId());
 
 		if (optional.isEmpty()) {
 			var userOpt = getUserRepository().findByPrn(applicationDto.getPrn());
