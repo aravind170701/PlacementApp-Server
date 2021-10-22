@@ -87,7 +87,7 @@ public class UserService {
 		}
 	}
 
-	private UsersList getAllUsers() {
+	public  UsersList getAllUsers() {
 		return extractList(getUserRepository().findAllByOrderByNameAsc());
 	}
 
@@ -119,7 +119,6 @@ public class UserService {
 			log.error("Cannot update Profile. Details are Empty");
 			return false;
 		}
-
 		// check if the record is present
 		var existingUserOpt = getUserRepository().findByPrn(userDto.getPrn());
 		if (existingUserOpt.isEmpty()) {
@@ -137,11 +136,10 @@ public class UserService {
 		if (StringUtils.isNotBlank(userDto.getMobile()) && userDto.getMobile().matches("[0-9]+")) {
 			user.setMobile(userDto.getMobile());
 		}
-		if(StringUtils.isNotBlank(userDto.getCvUrl()))
-		{
-			user.setCvUrl(userDto.getCvUrl());
+		var cvUrl  = userDto.getCvUrl();
+		if(cvUrl != null){
+		   user.setCVUrl(cvUrl);
 		}
-
 		updateSemesterScores(user, userDto);
 		getUserRepository().save(user);
 		return true;
@@ -156,14 +154,14 @@ public class UserService {
 			semResults = new StudentSemResult();
 		}
 		var semMap = userDto.getSemResults();
-		semResults.setSem1(semMap.getOrDefault("sem1", 0.0));
-		semResults.setSem2(semMap.getOrDefault("sem2", 0.0));
-		semResults.setSem3(semMap.getOrDefault("sem3", 0.0));
-		semResults.setSem4(semMap.getOrDefault("sem4", 0.0));
-		semResults.setSem5(semMap.getOrDefault("sem5", 0.0));
-		semResults.setSem6(semMap.getOrDefault("sem6", 0.0));
-		semResults.setSem7(semMap.getOrDefault("sem7", 0.0));
-		semResults.setSem8(semMap.getOrDefault("sem8", 0.0));
+		semResults.setSem1(semMap.getOrDefault("sem1", semResults.getSem1()));
+		semResults.setSem2(semMap.getOrDefault("sem2", semResults.getSem2()));
+		semResults.setSem3(semMap.getOrDefault("sem3", semResults.getSem3()));
+		semResults.setSem4(semMap.getOrDefault("sem4", semResults.getSem4()));
+		semResults.setSem5(semMap.getOrDefault("sem5", semResults.getSem5()));
+		semResults.setSem6(semMap.getOrDefault("sem6", semResults.getSem6()));
+		semResults.setSem7(semMap.getOrDefault("sem7", semResults.getSem7()));
+		semResults.setSem8(semMap.getOrDefault("sem8", semResults.getSem8()));
 
 		calculateScores(semResults, semMap);
 		semResults.setUser(user);
