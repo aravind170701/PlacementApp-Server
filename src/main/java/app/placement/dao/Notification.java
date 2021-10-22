@@ -39,6 +39,6 @@ public class Notification implements Serializable {
 	@Column
 	private String companyDescription;
 
-	@OneToMany(targetEntity = Application.class, mappedBy = "notification")
+	@OneToMany(targetEntity = Application.class, mappedBy = "company_notifications")
 	private Set<Application> applications;
 }
