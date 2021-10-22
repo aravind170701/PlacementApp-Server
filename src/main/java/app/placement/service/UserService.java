@@ -136,9 +136,8 @@ public class UserService {
 		if (StringUtils.isNotBlank(userDto.getMobile()) && userDto.getMobile().matches("[0-9]+")) {
 			user.setMobile(userDto.getMobile());
 		}
-		var cvUrl  = userDto.getCvUrl();
-		if(cvUrl != null){
-		   user.setCVUrl(cvUrl);
+		if(StringUtils.isNotBlank(userDto.getCvUrl())){
+		   user.setCvUrl(cvUrl);
 		}
 		updateSemesterScores(user, userDto);
 		getUserRepository().save(user);
