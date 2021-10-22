@@ -129,6 +129,7 @@ public class UserHelper {
 		var dto = new UserDto();
 		dto.setPrn(user.getPrn());
 		dto.setName(user.getName());
+		dto.setBranch(user.getBranch());
 		return dto;
 	}
 }
