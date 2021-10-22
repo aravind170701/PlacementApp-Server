@@ -15,6 +15,7 @@ public class ApplicationHelper {
 
 		var application = new Application();
         application.setOverallStatus(dto.getOverallStatus());
+		
 		return application;
 	}
 
