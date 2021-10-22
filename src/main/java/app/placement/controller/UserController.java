@@ -56,7 +56,7 @@ public class UserController {
 		return getUserService().getUserByPrn(prn);
 	}
 	@GetMapping("/get-all-users")
-	public UserList getUsers() {
+	public UsersList getUsers() {
 		return getUserService().getAllUsers();
 	}
 
