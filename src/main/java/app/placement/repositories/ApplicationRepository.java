@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.placement.dao.Application;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
