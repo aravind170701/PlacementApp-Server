@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,13 +115,9 @@ public class ApplicationService {
 	// getNotificationHelper().convertEntityToDto(notificationDetailsOpt.get());
 	// }
 
-	public StudentApplicationList getApplicationsForNotification(String notificationId) {
-		if (StringUtils.isBlank(notificationId)) {
-			var applicationsList = new StudentApplicationList();
-			applicationsList.setStudentApplicationsDto(Collections.emptyList());
-			return applicationsList;
-		}
-		var applications = getApplicationRepository().findByNotificationId(Integer.parseInt(notificationId));
+	public StudentApplicationList getApplicationsForNotification(Integer notificationId) {
+
+		var applications = getApplicationRepository().findByNotificationId(notificationId);
 		if (applications.isEmpty()) {
 			var applicationsList = new StudentApplicationList();
 			applicationsList.setStudentApplicationsDto(Collections.emptyList());
