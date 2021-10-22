@@ -128,7 +128,7 @@ public class ApplicationService {
 		List<StudentApplicationDto> applicationsList = applications.stream().filter(Objects::nonNull).map(i -> {
 			var application = new StudentApplicationDto();
 			application.setApplicationId(i.getApplicationId());
-			application.setPrn(i.getPrn());
+			application.setPrn(i.getUser().getPrn());
 			application.setName(i.getUser().getName());
 			application.setBranch(i.getUser().getBranch());
 			application.setEmail(i.getUser().getEmail());

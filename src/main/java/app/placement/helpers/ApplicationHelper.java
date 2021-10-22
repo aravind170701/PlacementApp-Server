@@ -14,7 +14,6 @@ public class ApplicationHelper {
 			return null;
 
 		var application = new Application();
-        application.setPrn(dto.getPrn());
         application.setOverallStatus(dto.getOverallStatus());
 		return application;
 	}
@@ -25,8 +24,8 @@ public class ApplicationHelper {
 
 		var dto = new ApplicationDto();
 		dto.setApplicationId(application.getApplicationId());
-		dto.setPrn(application.getPrn());
 		dto.setNotificationId(application.getNotification().getNotificationId());
+		dto.setPrn(application.getUser().getPrn());
 		dto.setOverallStatus(application.getOverallStatus());
 
 		return dto;
