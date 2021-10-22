@@ -55,6 +55,10 @@ public class UserController {
 	public UserDto getUser(@RequestParam("prn") String prn) {
 		return getUserService().getUserByPrn(prn);
 	}
+	@GetMapping("/get-all-users")
+	public UserDto getUser() {
+		return getUserService().getAllUsers();
+	}
 
 	@PutMapping("/update-profile")
 	public ResponseObject updateUserProfile(@RequestBody UserDto userDto) {
