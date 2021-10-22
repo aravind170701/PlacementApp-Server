@@ -9,7 +9,7 @@ import app.placement.dao.Application;
 
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
-	public Optional<Application> findByPrnAndNotificationId(String prn, Integer notificationId);
+	public Optional<Application> findAllByPrnAndNotificationId(String prn, Integer notificationId);
 
 	public List<Application> findByNotificationId(Integer notificationId);
 }
