@@ -69,6 +69,6 @@ public class User implements Serializable {
 	@Column
 	private String cvUrl;
 
-	@OneToMany(mappedBy = "applicationId")
+	@OneToMany(targetEntity = Application.class, mappedBy = "user")
 	private Set<Application> applications;
 }

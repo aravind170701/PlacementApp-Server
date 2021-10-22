@@ -36,11 +36,11 @@ public class Application implements Serializable {
 	@Column
 	private String overallStatus;
 
-	@ManyToOne
-	@JoinColumn(name = "prn", nullable = false)
+	@ManyToOne 
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "notificationId", nullable = false)
+	@JoinColumn(name = "notification_id", nullable = false)
 	private Notification notification;
 }
