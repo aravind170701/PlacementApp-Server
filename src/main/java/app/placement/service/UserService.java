@@ -137,7 +137,7 @@ public class UserService {
 			user.setMobile(userDto.getMobile());
 		}
 		if(StringUtils.isNotBlank(userDto.getCvUrl())){
-		   user.setCvUrl(cvUrl);
+		   user.setCvUrl(userDto.getCvUrl());
 		}
 		updateSemesterScores(user, userDto);
 		getUserRepository().save(user);
