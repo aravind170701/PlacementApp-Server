@@ -41,6 +41,6 @@ public class Application implements Serializable {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "notificationId", nullable = false, , referencedColumnName = "notificationId")
+	@JoinColumn(name = "notificationId", nullable = false, referencedColumnName = "notificationId")
 	private Notification notification;
 }
