@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.placement.dto.ApplicationCountDto;
 import app.placement.dto.ApplicationDto;
 import app.placement.dto.StudentApplicationList;
 import app.placement.service.ApplicationService;
