@@ -108,7 +108,7 @@ public class UserHelper {
 		userDto.setUserType(user.getUserType());
 		userDto.setHscPercentage(user.getHscPercentage());
 		userDto.setSscPercentage(user.getSscPercentage());
-		userDto.setNoOfLiveBacklogs(user.getNoOfLiveBacklogs());
+		userDto.setNoOfBacklogs(user.getNoOfBacklogs());
 
 		if (user.getSemResults() != null) {
 			var results = user.getSemResults();
