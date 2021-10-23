@@ -15,4 +15,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	
     @Query("FROM Application a where a.notification.notificationId = ?1")
 	public List<Application> findByNotificationId(Integer notificationId);
+
+	@Query("FROM Application a where a.user.prn = ?1")
+	public List<Application> findByPrn(String prn);
 }

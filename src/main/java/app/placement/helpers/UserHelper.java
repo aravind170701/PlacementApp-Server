@@ -28,7 +28,7 @@ public class UserHelper {
 		userEntity.setUserType(userDto.getUserType());
 		userEntity.setHscPercentage(userDto.getHscPercentage());
 		userEntity.setSscPercentage(userDto.getSscPercentage());
-		userEntity.setNoOfLiveBacklogs(userDto.getNoOfLiveBacklogs());
+		userEntity.setNoOfBacklogs(userDto.getNoOfBacklogs());
 
 		// Set Semester Results
 		if (!GenericUtils.isNullOrEmptyMap(userDto.getSemResults())) {
@@ -108,7 +108,7 @@ public class UserHelper {
 		userDto.setUserType(user.getUserType());
 		userDto.setHscPercentage(user.getHscPercentage());
 		userDto.setSscPercentage(user.getSscPercentage());
-		userDto.setNoOfLiveBacklogs(user.getNoOfLiveBacklogs());
+		userDto.setNoOfBacklogs(user.getNoOfBacklogs());
 
 		if (user.getSemResults() != null) {
 			var results = user.getSemResults();

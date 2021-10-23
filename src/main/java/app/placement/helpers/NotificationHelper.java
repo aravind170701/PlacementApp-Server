@@ -44,6 +44,7 @@ public class NotificationHelper {
 		var dto = new NotificationDto();
 		dto.setNotificationId(notification.getNotificationId());
 		dto.setCompanyName(notification.getCompanyName());
+		dto.setCompanyBranch(notification.getCompanyBranch());
 		return dto;
 	}
 }

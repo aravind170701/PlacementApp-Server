@@ -142,4 +142,31 @@ public class ApplicationService {
 		listDto.setStudentApplicationsDto(applicationsList);
 		return listDto;
 	}
+
+    public StudentApplicationList getApplicationsForPrn(String prn) {
+        var applications = getApplicationRepository().findByPrn(prn);
+		if (applications.isEmpty()) {
+			var applicationsList = new StudentApplicationList();
+			applicationsList.setStudentApplicationsDto(Collections.emptyList());
+			return applicationsList;
+		}
+
+		// for each notification, get the user details
+		List<StudentApplicationDto> applicationsList = applications.stream().filter(Objects::nonNull).map(i -> {
+			var application = new StudentApplicationDto();
+			application.setApplicationId(i.getApplicationId());
+			application.setPrn(i.getUser().getPrn());
+			application.setName(i.getUser().getName());
+			application.setBranch(i.getUser().getBranch());
+			application.setEmail(i.getUser().getEmail());
+			application.setOverallStatus(i.getOverallStatus());
+			application.setNotificationId(i.getNotification().getNotificationId());
+			application.setCompanyName(i.getNotification().getCompanyName());
+			return application;
+		}).collect(Collectors.toList());
+
+		var listDto = new StudentApplicationList();
+		listDto.setStudentApplicationsDto(applicationsList);
+		return listDto;
+    }
 }

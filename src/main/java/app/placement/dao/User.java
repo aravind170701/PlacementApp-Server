@@ -63,7 +63,7 @@ public class User implements Serializable {
 	private String year;
 
 	@Column
-	String noOfLiveBacklogs;
+	String noOfBacklogs;
 
 	@Column
 	String sscPercentage;
