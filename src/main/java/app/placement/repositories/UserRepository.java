@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 	Optional<User> findByPrnAndPassword(String prn, String password);
 
 	Optional<User> findByPrn(String prn);
-
+    @
 	List<User> findAllByOrderByNameAsc();
 
 	List<User> findAllByBranchOrderByNameAsc(String branch);

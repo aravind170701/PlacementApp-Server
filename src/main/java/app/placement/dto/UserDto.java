@@ -23,6 +23,9 @@ public class UserDto implements Serializable {
 	private String password;
 	private String email;
 	private String branch;
+	private String sscPercentage;
+	private String hscPercentage;
+	private String noOfLiveBacklogs;
 	private int division;
 	private String mobile;
 	private String userType;

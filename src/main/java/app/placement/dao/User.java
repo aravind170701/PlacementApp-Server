@@ -62,6 +62,16 @@ public class User implements Serializable {
 	@Column
 	private String year;
 
+	@Column
+	String noOfLiveBacklogs;
+
+	@Column
+	String sscPercentage;
+
+	@Column
+	String hscPercentage;
+
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "sem_results_id", referencedColumnName = "id")
 	private StudentSemResult semResults;
