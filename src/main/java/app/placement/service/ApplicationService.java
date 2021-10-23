@@ -169,4 +169,18 @@ public class ApplicationService {
 		listDto.setStudentApplicationsDto(applicationsList);
 		return listDto;
     }
+
+
+	public ApplicationCountDto getApplicationCount(String prn){
+		if (StringUtils.isNotBlank(prn)) {
+			ApplicationCountDto applicationCountDto = new ApplicationCountDto();
+			applicationCountDto.setPlacedCount(getApplicationRepository().findCountByStatusAndPrn(prn, "Placed"));
+			applicationCountDto.setNotPlacedCount(getApplicationRepository().findCountByStatusAndPrn(prn, "Not Placed"));
+			applicationCountDto.setOnHoldCount(getApplicationRepository().findCountByStatusAndPrn(prn, "On Hold"));
+			applicationCountDto.setInProcessCount(getApplicationRepository().findCountByStatusAndPrn(prn, "In Process"));
+			return applicationCountDto;
+		}else{
+			return new ApplicationCountDto();
+		}
+	}
 }

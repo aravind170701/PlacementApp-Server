@@ -52,4 +52,10 @@ public class ApplicationController {
 			@RequestParam("prn") String prn) {
 		return getApplicationService().getApplicationsForPrn(prn);
 	}
+
+	@GetMapping("/get-application-count")
+	public ApplicationCountDto getApplicationCountByPrn(
+			@RequestParam("prn") String prn) {
+		return getApplicationService().getApplicationCount(prn);
+	}
 }

@@ -19,6 +19,6 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("FROM Application a where a.user.prn = ?1")
 	public List<Application> findByPrn(String prn);
 
-	@Query("SELECT count(a) from Application a WHERE a.overallStatus = ?1 AND a.user.prn = ?2 ")
-	public Integer findCountByStatusAndPrn(String status, String prn);
+	@Query("SELECT count(a) from Application a WHERE a.overallStatus = ?2 AND a.user.prn = ?1 ")
+	public Integer findCountByStatusAndPrn(String prn, String status);
 }
