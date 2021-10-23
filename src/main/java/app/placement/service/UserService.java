@@ -137,7 +137,7 @@ public class UserService {
 			user.setHscPercentage(userDto.getHscPercentage());
 		}
 		if (StringUtils.isNotBlank(userDto.getSscPercentage())) {
-			user.setHscPercentage(userDto.getSscPercentage());
+			user.setSscPercentage(userDto.getSscPercentage());
 		}
 		if (StringUtils.isNotBlank(userDto.getNoOfLiveBacklogs())) {
 			user.setNoOfLiveBacklogs(userDto.getNoOfLiveBacklogs());
