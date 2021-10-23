@@ -133,6 +133,15 @@ public class UserService {
 		if (StringUtils.isNotBlank(userDto.getYear())) {
 			user.setYear(userDto.getYear());
 		}
+		if (StringUtils.isNotBlank(userDto.getHscPercentage())) {
+			user.setHscPercentage(userDto.getHscPercentage());
+		}
+		if (StringUtils.isNotBlank(userDto.getSscPercentage())) {
+			user.setHscPercentage(userDto.getSscPercentage());
+		}
+		if (StringUtils.isNotBlank(userDto.getNoOfLiveBacklogs())) {
+			user.setNoOfLiveBacklogs(userDto.getNoOfLiveBacklogs());
+		}
 		if (StringUtils.isNotBlank(userDto.getMobile()) && userDto.getMobile().matches("[0-9]+")) {
 			user.setMobile(userDto.getMobile());
 		}
